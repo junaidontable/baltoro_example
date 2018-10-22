@@ -13,15 +13,12 @@ public class App
     {
     	
     	Baltoro.init("blt-example", Env.PRD);
+
+    	Baltoro.register("api", "io.baltoro.example.api");
     	
-    	//
-    	Baltoro.register("app", "io.baltoro.example");
+    	Baltoro.register("", "io.baltoro.example.html");
     	
-    	
-    	/*
-    	 * register a new micro service here
-    	 */
-    	//Baltoro.register("auth", "com.flocap.api.auth");
+
     	
     	Baltoro.start();
     	
