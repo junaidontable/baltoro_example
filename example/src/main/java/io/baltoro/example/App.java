@@ -25,7 +25,7 @@ public class App
     	
     	/* paste the link in a browser 
     	
-    	http://blt-example.baltoro.io/app/api/helloworld
+    	http://blt-example.baltoro.io
     	
     	*/
     }

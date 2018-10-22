@@ -12,8 +12,8 @@ import io.baltoro.to.RequestContext;
 import io.baltoro.to.ResponseContext;
 
 
-@Path("/api")
-public class Base
+@Path("/customer")
+public class CustomerAPI
 {
 
 	
@@ -41,9 +41,11 @@ public class Base
 	
 	@Path("/createBook")
 	@NoAuth
-    public Book createBook(@Param("name") String name, @Param("price") String price, @Param("authorName") String authorName, 
-    		@CTX RequestContext req, 
-    		@CTX ResponseContext res)
+    public Book createBook(@Param("name") String name, 
+				    		@Param("price") String price, 
+				    		@Param("authorName") String authorName, 
+				    		@CTX RequestContext req, 
+				    		@CTX ResponseContext res)
     {
 		
 		

@@ -1,10 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<script type="text/javascript">
+
+
+	function getData(url) 
+	{
+	  var xhttp = new XMLHttpRequest();
+	  xhttp.onreadystatechange = function() 
+	  {
+	    if (this.readyState == 4 && this.status == 200) 
+	    {
+	      
+	      var objs = JSON.parse(this.responseText);
+	      displayDeals(objs);
+	      
+	    }
+	  };
+	  
+	  xhttp.open("GET", url, true);
+	  xhttp.send();
+	}
+	
+	
+	function display(arr)
+	{
+		var out = "";
+	    var i;
+	    for(i = 0; i < arr.length; i++) 
+	    {
+	        out += '<a href=/app/api/' + arr[i].baseUuid + '>' + 
+	        arr[i].name + '</a><br>';
+	    }
+	    document.getElementById("content").innerHTML = out;
+	}
+
+
+</script>
 </head>
 <body>
 
 <h2>Baltoro Examples</h2>
+
+<form method='post' action='/api/book/create'>
+<label for='inputBook'>Name</label>
+<input type='text' id='inputBook' name='bookName' value=''><br/>
+
+<label for='inputPrice'>Price</label>
+<input type='text' id='inputPrice' name='price' value=''><br/>
+
+<label for='inputAuthor'>Author Name</label>
+<input type='text' id='inputAuthor' name='authorName' value=''><br/>
+
+<input type='submit' value='createBook'>
+
+</form>
+<hr/>
+
+<div id='content'></div>
 
 </body>
 </html>
