@@ -1,5 +1,7 @@
 package io.baltoro.example.api;
 
+import java.util.List;
+
 import io.baltoro.client.Baltoro;
 import io.baltoro.client.LocalDB;
 import io.baltoro.example.Author;
@@ -27,22 +29,20 @@ public class BookAPI
     }
 	
 	
-	@Path("/getBook")
+	@Path("/all")
 	@NoAuth
-    public Book getBook(@Param("name") String name, 
-    		@CTX RequestContext req, 
-    		@CTX ResponseContext res)
+    public List<Book> getBook(@CTX ResponseContext res)
     {
 		
-		Book b = db.getByName(name, Book.class);
-		return b;
+		List<Book> l = db.find(Book.class);
+		
+		return l;
     }
 		
 	
 	@Path("/create")
 	@NoAuth
-    public Book createBook(@Param("bookName") String bookName, 
-				    		@Param("price") String price, 
+    public Book createBook(@Param("bookName") String bookName,
 				    		@Param("authorName") String authorName, 
 				    		@CTX RequestContext req, 
 				    		@CTX ResponseContext res)
@@ -54,7 +54,6 @@ public class BookAPI
 		{
 			b = new Book();
 	    	b.setName(bookName);
-	    	b.setPrice(Integer.parseInt(price));
 	    	
 	    	db.save(b);
 		}
@@ -70,6 +69,8 @@ public class BookAPI
     	
 		db.link(a, b);
     	
+		res.sendRedirect("/");
+		
     	return b;
     }
 	

@@ -1,5 +1,7 @@
 package io.baltoro.example.api;
 
+import java.util.List;
+
 import io.baltoro.client.Baltoro;
 import io.baltoro.client.LocalDB;
 import io.baltoro.example.Author;
@@ -18,7 +20,17 @@ public class AuthorAPI
 	
 	LocalDB db = Baltoro.getDB();
 	
-	@Path("/createAuthor")
+	
+	@Path("/all")
+	@NoAuth
+    public List<Author> allAuthors()
+    {
+		
+		List<Author> l = db.find(Author.class);
+		return l;
+    }
+	
+	@Path("/create")
 	@NoAuth
     public Author createAuthro(@Param("name") String name, @CTX RequestContext req, @CTX ResponseContext res)
     {
